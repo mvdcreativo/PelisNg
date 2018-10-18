@@ -1,0 +1,38 @@
+<div class="container">
+
+  <div class="card-item" *ngFor="let pelicula of peliculas" >
+    <!-- <div class="bg"></div> -->
+      <a href="" [ngStyle]="{'background-image': 'url('+pelicula.imagen+')' }">
+        <div class="card-header">
+          <div class="card-valoration">
+            <span>
+              <i class="material-icons yellow">star</i>
+              <strong>{{ pelicula.valoracion }}</strong>
+            </span>
+          </div>
+          <div class="card-title">
+            <h1>{{ pelicula.titulo }}</h1>
+          </div>
+                <!-- <div class="card-subtitle">
+              <span>{{ pelicula.calidad }}</span>
+            </div> -->
+        </div>
+      </a>
+    
+    <!-- <img [src]="pelicula.imagen" [alt]="pelicula.titulo"> -->
+    <!-- <mat-card-content>
+      <p>
+        {{ pelicula.sinopsis }}
+      </p>
+    </mat-card-content> -->
+    <div class="card-action">
+      <div>
+        <a href="" class="iz"><i class="material-icons">ondemand_video</i><span> Ver Online</span></a>
+      </div>
+      <div>
+        <a href="" class="de"><span>Mas Info</span><i class="material-icons">more_horiz</i></a>
+      </div>
+    </div>
+  </div>
+
+</div>
