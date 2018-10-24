@@ -1,0 +1,10 @@
+.container{
+    display: grid;
+    grid-gap: 1rem;
+    
+}
+.info{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}

@@ -2,16 +2,16 @@
 
   <div class="card-item" *ngFor="let pelicula of peliculas" >
     <!-- <div class="bg"></div> -->
-      <a href="" [ngStyle]="{'background-image': 'url('+pelicula.imagen+')' }">
+      <a href="" [ngStyle]="{'background-image': 'url('+pelicula.image+')' }">
         <div class="card-header">
           <div class="card-valoration">
             <span>
               <i class="material-icons yellow">star</i>
-              <strong>{{ pelicula.valoracion }}</strong>
+              <strong>10</strong>
             </span>
           </div>
           <div class="card-title">
-            <h1>{{ pelicula.titulo }}</h1>
+            <h1>{{ pelicula.title }}</h1>
           </div>
                 <!-- <div class="card-subtitle">
               <span>{{ pelicula.calidad }}</span>
@@ -30,7 +30,7 @@
         <a href="" class="iz"><i class="material-icons">ondemand_video</i><span> Ver Online</span></a>
       </div>
       <div>
-        <a href="" class="de"><span>Mas Info</span><i class="material-icons">more_horiz</i></a>
+        <a [routerLink]="[ '/detalle', pelicula.id ]" class="de"><span>Mas Info</span><i class="material-icons">more_horiz</i></a>
       </div>
     </div>
   </div>

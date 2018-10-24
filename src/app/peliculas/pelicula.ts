@@ -1,13 +1,17 @@
 export interface Pelicula {
+  data: Pelicula;
     id: number;
-    titulo: string;
-    otros_titulos?: string;
-    sinopsis: string;
-    elenco: string;
-    genero: any;
-    idioma_audio: string;
-    director: string;
+    title: string;
+    title_origin?: string;
+    description: string;
+    ano: string;
+    duration: string;
+    image: string;
+    url_origin: string;
+    state: string;
+    director: any;
+    genres: any;
+    actors: any;
     calidad: string;
-    valoracion: number;
-    imagen: string;
+
 }

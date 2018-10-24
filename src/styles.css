@@ -18,6 +18,15 @@ body{
     padding: 0;
     margin: 0;
 }
+.container{
+    background: rgb(219, 218, 218);
+    margin-top: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.2rem 0.5rem;
+    font-family: 'Roboto-Light',serif;
+    min-height: 100vh;
+}
 
 /* colores */
 .green{
