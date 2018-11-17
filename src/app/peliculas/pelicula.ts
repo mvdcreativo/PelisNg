@@ -50,7 +50,7 @@ export interface SpokenLanguage {
   name: string;
 }
 
-export interface RootObject {
+export interface MovieTmdb {
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection?: any;
