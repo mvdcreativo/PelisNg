@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DetalleComponent } from './detalle/detalle.component';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminModule } from './admin/admin.module';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     HttpClientModule,
+    AdminModule,
     RouterModule.forChild(routes),
   ],
   declarations: [

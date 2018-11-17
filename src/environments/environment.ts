@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApi: "http://pelis.web/",
+  urlApi: "http://pelis.web/api/movies",
 };
 
 /*

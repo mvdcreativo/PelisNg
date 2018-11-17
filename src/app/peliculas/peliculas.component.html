@@ -1,8 +1,8 @@
 <div class="container">
-
+  
   <div class="card-item" *ngFor="let pelicula of peliculas" >
     <!-- <div class="bg"></div> -->
-      <a href="" [ngStyle]="{'background-image': 'url('+pelicula.image+')' }">
+      <a [routerLink]="[ '/admin/peliculas/add', pelicula.id ]" [ngStyle]="{'background-image': 'url('+pelicula.image+')' }">
         <div class="card-header">
           <div class="card-valoration">
             <span>
@@ -11,9 +11,9 @@
             </span>
           </div>
           <div class="card-title">
-            <h1>{{ pelicula.title }}</h1>
+            <h1>{{ pelicula.title }} | <span>{{ pelicula.ano }}</span> </h1>
           </div>
-                <!-- <div class="card-subtitle">
+                <!-- <div class="card-subtitle">s
               <span>{{ pelicula.calidad }}</span>
             </div> -->
         </div>

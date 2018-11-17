@@ -1,9 +1,49 @@
-<div class="container">
+<div class="container" *ngIf="pelicula">
   <div class="info">
     <div class="img">
       <img [src]="pelicula.image" alt="">
     </div>
     <div class="datos">
+      <div class="titulo">
+        <h1>{{ pelicula.title }}</h1>
+      </div>
+      <div class="titulo">
+         <p><strong>Titulo Original: {{ pelicula.title_origin }}</strong></p>
+        </div>
+      <div class="sinopsis">
+        <p>{{ pelicula.description }}</p>
+      </div>
+      <div class="genero">
+        <span><strong>Genero: </strong></span> <span *ngFor="let genre of pelicula.genres"> {{ genre.name }} -</span>
+      </div>
+      <div class="ano">
+          <p><strong>Año:</strong> {{ pelicula.ano }}</p>
+        </div>
+      <div class="duracion">
+        <p><strong>Duración:</strong> {{ pelicula.duration }}</p>
+      </div>
+      <div class="director">
+        <p><strong>Director:</strong> {{ pelicula.director.name }}</p>
+      </div>
+      <div class="actores">
+        <p><strong>Elenco: </strong><span *ngFor="let actor of pelicula.actors"> {{ actor.name }} <strong>|</strong></span></p>
+      </div>
+    </div>
+  </div>
+  <div class="acciones">
+    <div class="ver-online">
+        <iframe 
+          [src]="Openload"
+          scrolling="no" 
+          frameborder="0" 
+
+          allowfullscreen="true"
+          webkitallowfullscreen="true" 
+          mozallowfullscreen="true">
+        </iframe>
+    </div>
+    
+    <div class="downloads">
 
     </div>
   </div>

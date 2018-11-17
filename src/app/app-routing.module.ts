@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'detalle/:id',
     loadChildren: './peliculas/peliculas.module#PeliculasModule'
+  },
+  {
+    path: 'admin/peliculas/add/:id',
+    loadChildren: './peliculas/admin/admin.module#AdminModule'
   }
 ];
 

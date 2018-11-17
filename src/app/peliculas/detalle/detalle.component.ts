@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PeliculasService } from '../peliculas.service';
 import { Pelicula } from '../pelicula';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'EM-detalle',
@@ -12,10 +13,13 @@ export class DetalleComponent implements OnInit {
 
   public id:number;
   public pelicula: Pelicula;
+  public urlOpenload ;
+  Openload: import("d:/Proyectos/pelis/pelisNg/node_modules/@angular/platform-browser/src/security/dom_sanitization_service").SafeResourceUrl;
 
   constructor(
     private params : ActivatedRoute,
-    private peliculas_service : PeliculasService
+    private movieService : PeliculasService,
+    private sanitizer: DomSanitizer
   ) { }
   
   ngOnInit() {
@@ -25,10 +29,14 @@ export class DetalleComponent implements OnInit {
 
 
   getPelicula(){
-    this.peliculas_service.getPeliculaID(this.id).subscribe(
-      (datos:Pelicula)=>
-        this.pelicula = datos.data
-    )
+   
+    this.movieService.getPeliculaID(this.id).subscribe(
+      (datos:Pelicula)=>{
+        this.pelicula = datos.data;
+        this.urlOpenload = 'https://openload.co/embed/'+this.pelicula.extid;
+        this.Openload = this.sanitizer.bypassSecurityTrustResourceUrl( this.urlOpenload)
+
+      })
   }
 
 }
