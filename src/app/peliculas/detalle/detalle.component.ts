@@ -14,7 +14,7 @@ export class DetalleComponent implements OnInit {
   public id:number;
   public pelicula: Pelicula;
   public urlOpenload ;
-  Openload: import("d:/Proyectos/pelis/pelisNg/node_modules/@angular/platform-browser/src/security/dom_sanitization_service").SafeResourceUrl;
+  Openload: import("@angular/platform-browser/src/security/dom_sanitization_service").SafeResourceUrl;
 
   constructor(
     private params : ActivatedRoute,
