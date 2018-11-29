@@ -5,9 +5,13 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 // FlexLayaut
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FiltroPipe } from './pipes/filtro.pipe';
 
 
 @NgModule({
+  declarations: [
+    FiltroPipe
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -15,8 +19,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   exports: [
     MaterialModule,
-    FlexLayoutModule
-  ],
-  declarations: []
+    FlexLayoutModule,
+    FiltroPipe
+  ]
 })
 export class SharedModule { }

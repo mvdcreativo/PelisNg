@@ -46,7 +46,7 @@ export class AddComponent implements OnInit {
       data => {
         this.movies = data;
         console.log(this.movies);
-        this.getMovieTmdb(this.movies.tmdb_id);
+        this.getMovieTmdb(id_tmdb);
       },
       err => console.error('Ops: ' + err.message))
   }
@@ -56,8 +56,6 @@ export class AddComponent implements OnInit {
     this.movieService.getPeliculaID(this.id).subscribe(
       (datos:Pelicula)=>{
         this.movie = datos.data;
-
-
       })
   }
 
@@ -68,7 +66,21 @@ export class AddComponent implements OnInit {
 
         this.imagePatch = 'https://image.tmdb.org/t/p/w342/'+this.movieTmdb.poster_path;
 
-        console.log(this.movieTmdb)
+        // this.movie.title = this.movieTmdb.title;
+        // this.movie.title_origin = this.movieTmdb.original_title;
+        // this.movie.description = this.movieTmdb.overview;
+        // this.movie.ano = this.movieTmdb.release_date;
+        // this.movie.duration = this.movieTmdb.runtime;
+        // this.movie.image = this.imagePatch;
+        // this.movie.state = 4;
+        // this.movie.tmdb_id = this.movieTmdb.id;
+        // this.movie.imdb_id = this.movieTmdb.imdb_id;
+        // this.movie.rating_tmdb = this.movieTmdb.vote_average;
+        // this.movie.release_date = this.movieTmdb.release_date;
+        // this.movie.budget = this.movieTmdb.budget;
+        // this.movie.revenue = this.movieTmdb.revenue;
+        
+        // console.log(this.movieTmdb)
 
 
       })  

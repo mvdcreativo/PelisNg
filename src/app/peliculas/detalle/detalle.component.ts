@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PeliculasService } from '../peliculas.service';
-import { Pelicula } from '../pelicula';
+import { Pelicula, MovieTmdb, Crew, Cast } from '../pelicula';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SafeResourceUrl } from "@angular/platform-browser/src/security/dom_sanitization_service";
 
 @Component({
   selector: 'EM-detalle',
@@ -11,10 +12,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class DetalleComponent implements OnInit {
 
-  public id:number;
-  public pelicula: Pelicula;
-  public urlOpenload ;
-  Openload: import("d:/Proyectos/pelis/pelisNg/node_modules/@angular/platform-browser/src/security/dom_sanitization_service").SafeResourceUrl;
+  id:number;
+  pelicula: Pelicula;
+  urlOpenload ;
+  Openload: SafeResourceUrl;
+  id_tmdb: any;
+  movieTmdb: MovieTmdb;
+  imagePatch: string;
+  personal: Crew[];
+  cast: Cast[];
+  cast_image: string;
 
   constructor(
     private params : ActivatedRoute,
@@ -24,13 +31,15 @@ export class DetalleComponent implements OnInit {
   
   ngOnInit() {
     this.id = this.params.snapshot.params['id'];
-    this.getPelicula();
+    this.id_tmdb = this.params.snapshot.params['tmdb_id'];
+    this.getPelicula(this.id);
+    this.getMovieTmdb(this.id_tmdb)
   }
 
 
-  getPelicula(){
+  getPelicula(id){
    
-    this.movieService.getPeliculaID(this.id).subscribe(
+    this.movieService.getPeliculaID(id).subscribe(
       (datos:Pelicula)=>{
         this.pelicula = datos.data;
         this.urlOpenload = 'https://openload.co/embed/'+this.pelicula.extid;
@@ -39,4 +48,16 @@ export class DetalleComponent implements OnInit {
       })
   }
 
+  getMovieTmdb(tmdb_id){
+    this.movieService.getDataMoviesTmdb(tmdb_id).subscribe(
+      (datos:MovieTmdb)=>{
+        this.movieTmdb = datos;
+        this.personal = this.movieTmdb.credits.crew;
+        this.cast = this.movieTmdb.credits.cast;
+        this.cast_image = 'https://image.tmdb.org/t/p/w92/';
+        this.imagePatch = 'https://image.tmdb.org/t/p/w500/'+this.movieTmdb.poster_path;
+  
+        console.log(this.cast);
+      });
+  }
 }

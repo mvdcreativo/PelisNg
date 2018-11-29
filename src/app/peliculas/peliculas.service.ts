@@ -35,6 +35,6 @@ export class PeliculasService {
 
 ////////TMDb
   getDataMoviesTmdb(id_tmdb){
-    return this.http.get<MovieTmdb>('https://api.themoviedb.org/3/movie/'+`${id_tmdb}`+'?api_key='+`${this.apiKeyTmdb}`+'&language='+`${this.language}`);
+    return this.http.get<MovieTmdb>('https://api.themoviedb.org/3/movie/'+`${id_tmdb}`+'?api_key='+`${this.apiKeyTmdb}`+'&language='+`${this.language}`+'&append_to_response=credits');
   }
 }

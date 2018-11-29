@@ -7,11 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { DetalleComponent } from './detalle/detalle.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminModule } from './admin/admin.module';
+import { PeliculaListItemComponent } from './pelicula-list-item/pelicula-list-item.component';
 
 
 const routes: Routes = [
   {
-    path: 'detalle/:id',
+    path: 'detalle/:id/:tmdb_id',
     component: DetalleComponent
   },
 
@@ -27,7 +28,8 @@ const routes: Routes = [
   ],
   declarations: [
     PeliculasComponent,
-    DetalleComponent
+    DetalleComponent,
+    PeliculaListItemComponent
   ],
   exports: [
     PeliculasComponent

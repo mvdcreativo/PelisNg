@@ -1,38 +1,69 @@
-<div class="container" *ngIf="pelicula">
+<div class="container" *ngIf="movieTmdb && pelicula">
   <div class="info">
     <div class="img">
-      <img [src]="pelicula.image" alt="">
+      <img [src]="imagePatch" alt="movieTmdb.title">
     </div>
     <div class="datos">
       <div class="titulo">
-        <h1>{{ pelicula.title }}</h1>
+        <h1>{{ movieTmdb.title }}</h1>
       </div>
       <div class="titulo">
-         <p><strong>Titulo Original: {{ pelicula.title_origin }}</strong></p>
-        </div>
+        <p><strong>Titulo Original: {{ movieTmdb.original_title }}</strong></p>
+      </div>
       <div class="sinopsis">
-        <p>{{ pelicula.description }}</p>
+        <p>{{ movieTmdb.overview }}</p>
       </div>
       <div class="genero">
-        <span><strong>Genero: </strong></span> <span *ngFor="let genre of pelicula.genres"> {{ genre.name }} -</span>
+        <span><strong>Genero: </strong></span> <span *ngFor="let genre of movieTmdb.genres"> {{ genre.name }} </span>
       </div>
       <div class="ano">
-          <p><strong>Año:</strong> {{ pelicula.ano }}</p>
-        </div>
+        <p><strong>Año:</strong> {{ movieTmdb.release_date | date : 'yyyy' }}</p>
+      </div>
       <div class="duracion">
-        <p><strong>Duración:</strong> {{ pelicula.duration }}</p>
+        <p><strong>Duración:</strong> {{ movieTmdb.runtime }}</p>
       </div>
       <div class="director">
-        <p><strong>Director:</strong> {{ pelicula.director.name }}</p>
+        <span><strong>Director/es:</strong></span> <span *ngFor="let director of  personal | filtro : 'job' : 'Director' ">
+          {{ director.name }}</span>
       </div>
       <div class="actores">
-        <p><strong>Elenco: </strong><span *ngFor="let actor of pelicula.actors"> {{ actor.name }} <strong>|</strong></span></p>
+        <span><strong>Elenco:</strong> </span>
+        <div class="actores-cimg">
+          <div class="card-item" *ngFor="let actor of cast | filtro : 'profile_path'">
+            <a href="#">
+              <div class="card-header">
+                <div class="card-image">
+                  <img [src]="cast_image + actor.profile_path" alt="{{ actor.name }}">
+                </div>
+
+                <div class="card-title">
+                  <span><strong>{{ actor.name }}</strong></span>
+                  <span>( {{ actor.character }})</span>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+        <div class="actores-simg">
+          <div class="card-item" *ngFor="let actor_simg of cast | filtro : 'profile_path': 'none'">
+            <a href="#">
+              <div class="card-header">
+                <div class="card-title">
+                  <span><strong>{{ actor_simg.name }}</strong></span>
+                  <span>( {{ actor_simg.character }})</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
   <div class="acciones">
     <div class="ver-online">
-        <iframe 
+      <!-- <iframe 
           [src]="Openload"
           scrolling="no" 
           frameborder="0" 
@@ -40,9 +71,9 @@
           allowfullscreen="true"
           webkitallowfullscreen="true" 
           mozallowfullscreen="true">
-        </iframe>
+        </iframe> -->
     </div>
-    
+
     <div class="downloads">
 
     </div>

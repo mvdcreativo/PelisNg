@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { PeliculasService } from './peliculas.service';
-import { Pelicula } from './pelicula';
-import { forEach } from '@angular/router/src/utils/collection';
+import { Pelicula, MovieTmdb } from './pelicula';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'EM-peliculas',
   templateUrl: './peliculas.component.html',
-  styleUrls: ['./peliculas.component.css']
+  styleUrls: ['./peliculas.component.css'],
 })
 export class PeliculasComponent implements OnInit {
 
-  public peliculas: Pelicula;
+  peliculas: Pelicula;
+  tmb_id: any;
+  movieTmdb: MovieTmdb;
+  imagePatch: string;
 
   constructor(
     public peliculas_service: PeliculasService,
@@ -26,13 +28,21 @@ export class PeliculasComponent implements OnInit {
 getPeliculas() {
 
   this.peliculas_service.getPeliculas().subscribe(
-    (datos: Pelicula)=>
+    (datos: Pelicula)=> {
+      this.peliculas = datos.data;
+      // console.log(peliTmdb)
 
-      this.peliculas = datos.data
+ 
+      
+      
 
-  )
+      // this.tmb_id = this.peliculas.tmdb_id;
+        //this.getMovieTmdb(this.tmb_id);
 
+
+    });
 
 }
+
 
 }

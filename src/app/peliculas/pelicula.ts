@@ -5,7 +5,7 @@ export interface Pelicula {
     title_origin?: string;
     description: string;
     ano: string;
-    duration: string;
+    duration: number;
     image: string;
     url_origin: string;
     state: number;
@@ -14,20 +14,19 @@ export interface Pelicula {
     actors: [any];
     calidad: string;
     extid: string;
-    tmdb_id: string;
+    tmdb_id: number;
     imdb_id: string; 
     image_bg: string;
-    rating_tmdb: string;
-    rating_imdb: string;
+    rating_tmdb: number;
+    rating_imdb: number;
     vote_count_tmdb: number;
     vote_count_imdb: number;
     release_date: string;
-    budget: string;
-    revenue: string;
+    budget: number;
+    revenue: number;
 }
 
 /////Datos Peliculas de Tmdb
-
 export interface Genre {
   id: number;
   name: string;
@@ -48,6 +47,32 @@ export interface ProductionCountry {
 export interface SpokenLanguage {
   iso_639_1: string;
   name: string;
+}
+
+export interface Cast {
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  name: string;
+  order: number;
+  profile_path: string;
+}
+
+export interface Crew {
+  credit_id: string;
+  department: string;
+  gender: number;
+  id: number;
+  job: string;
+  name: string;
+  profile_path: string;
+}
+
+export interface Credits {
+  cast: Cast[];
+  crew: Crew[];
 }
 
 export interface MovieTmdb {
@@ -76,4 +101,5 @@ export interface MovieTmdb {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  credits: Credits;
 }
