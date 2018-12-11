@@ -16,6 +16,7 @@ import { formatNumber } from '@angular/common';
 })
 export class DetalleComponent implements OnInit {
 
+<<<<<<< HEAD
   id:number;
   pelicula: Pelicula;
   urlOpenload ;
@@ -36,6 +37,12 @@ export class DetalleComponent implements OnInit {
   
  
   
+=======
+  public id:number;
+  public pelicula: Pelicula;
+  public urlOpenload ;
+  Openload: import("@angular/platform-browser/src/security/dom_sanitization_service").SafeResourceUrl;
+>>>>>>> 436a705bfc5f8508cf457d9bf11834efb1d4608d
 
   constructor(
     private params : ActivatedRoute,
