@@ -1,9 +1,16 @@
 <div class="container" *ngIf="peliculas">
-  <div  *ngFor="let pelicula of peliculas | filtro : 'tmdb_id'" > 
-      <EM-pelicula-list-item 
-          *ngIf="pelicula.tmdb_id" 
-          [tmbd_id] = "pelicula.tmdb_id" 
-          [id] = "pelicula.id">
-      </EM-pelicula-list-item>
-  </div>
+    <div class="search input-txt" >
+        <input type="text" [(ngModel)]="searchText" placeholder="Buscar">
+    </div>
+    <mat-progress-bar class="progress" *ngIf="loading" color="warn" mode="indeterminate"></mat-progress-bar>
+
+    <div class="content">
+        <div class=""  *ngFor="let pelicula of showResults()" > 
+            <EM-pelicula-list-item 
+                *ngIf="pelicula.tmdb_id" 
+                [tmbd_id] = "pelicula.tmdb_id" 
+                [id] = "pelicula.id">
+            </EM-pelicula-list-item>
+        </div>
+    </div>
 </div>

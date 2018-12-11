@@ -2,28 +2,28 @@ export interface Pelicula {
     data: Pelicula;
     id: number;
     title: string;
-    title_origin?: string;
-    description: string;
-    ano: string;
-    duration: number;
     image: string;
     url_origin: string;
     state: number;
-    director: [any];
-    genres: [any];
-    actors: [any];
-    calidad: string;
     extid: string;
     tmdb_id: number;
-    imdb_id: string; 
-    image_bg: string;
-    rating_tmdb: number;
-    rating_imdb: number;
-    vote_count_tmdb: number;
-    vote_count_imdb: number;
-    release_date: string;
-    budget: number;
-    revenue: number;
+    // title_origin?: string;
+    // description: string;
+    // ano: string;
+    // duration: number;
+    // director: [any];
+    // genres: [any];
+    // actors: [any];
+    // calidad: string;
+    // imdb_id: string; 
+    // image_bg: string;
+    // rating_tmdb: number;
+    // rating_imdb: number;
+    // vote_count_tmdb: number;
+    // vote_count_imdb: number;
+    // release_date: string;
+    // budget: number;
+    // revenue: number;
 }
 
 /////Datos Peliculas de Tmdb

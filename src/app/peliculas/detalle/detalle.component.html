@@ -1,15 +1,69 @@
 <div class="container" *ngIf="movieTmdb && pelicula">
-  <div class="info">
-    <div class="img">
-      <img [src]="imagePatch" alt="movieTmdb.title">
+  <div class="acciones" [ngStyle]="{'background-image': 'url('+imageBg+')'}">
+    <div class="bg">
+      <div class="img">
+        <img [src]="imagePatch" alt="movieTmdb.title">
+      </div>
+      <div class="ver-online">
+        <div class="header">
+            <div class="rating">
+                <span>
+                  <bar-rating [(rate)]="value_display_rating" [max]="5" [theme]="'movie'" [showText]="true" [titles]="titles_rating"
+                    [readOnly]="true">
+                  </bar-rating>
+                </span>
+                <span class="count-votos">{{ movieTmdb.vote_count }} votos</span>
+            </div>
+            <div class="titulo">
+                  <h1>{{ movieTmdb.title }}</h1>
+                  <span><strong>Titulo Original:</strong>  {{ movieTmdb.original_title }} ({{ movieTmdb.release_date | date : 'yyyy' }})</span>
+            </div>
+        </div>
+        <div class="video">
+          <mat-progress-bar class="progress" *ngIf="loading" color="warn" mode="indeterminate"></mat-progress-bar>
+          
+          <ng-container *ngIf="playPortada; then imagenPortada ; else video "></ng-container>
+            <ng-template #imagenPortada>
+              <div class="play" [ngStyle]="{'background-image': 'url('+imageBg+')'}" (click) = "play()">
+                  
+
+                  <i class="material-icons">
+                      play_circle_outline
+                  </i>
+              </div>
+            </ng-template>
+
+            <ng-template #video>
+              <iframe class="play iframe" [src]="Openload"
+                [ngStyle]="{'background-image': 'url('+imageBg+')'}"
+                width="700"
+                height="430"
+                scrolling="no" 
+                frameborder="0" 
+                allowfullscreen="true" 
+                webkitallowfullscreen="true"
+                mozallowfullscreen="true">
+              </iframe>
+            </ng-template>
+        </div>
+
+            
+            <!-- <vg-player>
+                <video [vgMedia]="media" #media id="singleVideo" preload="auto" [poster]="imageBg" controls>
+                    <source src="https://1fhjlpd.oloadcdn.net/dl/l/yUqEMvBVlKiNrMfW/LPFXrveo5I8/The.happytime.murders.2018.1080p-dual-lat-cinecalidad.to.mp4?mime=true" type="video/mp4">
+                </video>
+            </vg-player>   -->
+        
+
+      </div>
+  
+      <!-- <div class="downloads">
+  
+      </div> -->
     </div>
+  </div>
+  <div class="info" >
     <div class="datos">
-      <div class="titulo">
-        <h1>{{ movieTmdb.title }}</h1>
-      </div>
-      <div class="titulo">
-        <p><strong>Titulo Original: {{ movieTmdb.original_title }}</strong></p>
-      </div>
       <div class="sinopsis">
         <p>{{ movieTmdb.overview }}</p>
       </div>
@@ -59,23 +113,6 @@
         </div>
 
       </div>
-    </div>
-  </div>
-  <div class="acciones">
-    <div class="ver-online">
-      <!-- <iframe 
-          [src]="Openload"
-          scrolling="no" 
-          frameborder="0" 
-
-          allowfullscreen="true"
-          webkitallowfullscreen="true" 
-          mozallowfullscreen="true">
-        </iframe> -->
-    </div>
-
-    <div class="downloads">
-
     </div>
   </div>
 </div>

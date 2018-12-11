@@ -10,10 +10,15 @@ import { Pelicula, MovieTmdb } from './pelicula';
 })
 export class PeliculasComponent implements OnInit {
 
-  peliculas: Pelicula;
+  peliculas;
   tmb_id: any;
   movieTmdb: MovieTmdb;
   imagePatch: string;
+  loading: boolean = false;
+
+  searchText:string;
+  public searching: boolean = false;
+  result: any;
 
   constructor(
     public peliculas_service: PeliculasService,
@@ -26,23 +31,47 @@ export class PeliculasComponent implements OnInit {
 
 
 getPeliculas() {
+  this.loading = true;
 
   this.peliculas_service.getPeliculas().subscribe(
     (datos: Pelicula)=> {
       this.peliculas = datos.data;
+      this.loading = false;
+      if(this.peliculas.length === 0){
+        console.log('sin result')
+      }
       // console.log(peliTmdb)
-
- 
-      
-      
-
-      // this.tmb_id = this.peliculas.tmdb_id;
-        //this.getMovieTmdb(this.tmb_id);
-
-
     });
 
 }
+
+
+ showResults(){
+   this.loading = true;
+    if(this.peliculas.length === 0 || this.searchText === undefined || this.searchText === ''){
+      this.loading = false;
+      return this.peliculas
+    }
+    if(this.peliculas.length === 0){
+      console.log('sin result')
+    }
+
+    return this.peliculas.filter(
+      res =>{
+        if(res.title.toLowerCase().includes(this.searchText.toLowerCase()) && res.tmdb_id != null ){
+          // console.log('hola')
+
+          this.loading = false;
+          return true;
+        }
+        return false;
+    });
+
+    
+    
+  }
+
+
 
 
 }

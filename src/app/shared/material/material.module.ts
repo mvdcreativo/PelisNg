@@ -14,6 +14,8 @@ import {
   MatChipsModule,
   MatFormFieldModule,
   MatInputModule,
+  MatProgressBarModule,
+  MatTableModule,
 } from '@angular/material';
 
 // import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
@@ -33,7 +35,9 @@ import {
     MatListModule,
     MatChipsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressBarModule,
+    MatTableModule
   ],
   exports: [
     MatGridListModule,
@@ -47,7 +51,9 @@ import {
     MatListModule,
     MatChipsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressBarModule,
+    MatTableModule
   ],
   declarations: []
 })

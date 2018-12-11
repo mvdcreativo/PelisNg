@@ -1,6 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+/* TEMAS DE BAR RATING */
+@import "~ngx-bar-rating/themes/br-movie-theme.css";
+.br-text{
+    width: auto!important;
+    font-size: 0.8em!important
+}
+.br-units{
+    margin: 0!important;
+}
+.br {
+    margin: 0!important;
+}
+
+/*  */
+* {
+    box-sizing: border-box;
+}
+
 @font-face{
     font-family: 'Roboto-Regular';
     src: url('./assets/fonts/Roboto-Regular.ttf'); 
@@ -23,7 +41,7 @@ body{
     margin-top: 50px;
     width: 100%;
     box-sizing: border-box;
-    padding: 1.2rem 0.5rem;
+    padding-top: 0.9rem ;
     font-family: 'Roboto-Light',serif;
     min-height: 100vh;
     display: grid;
@@ -55,4 +73,11 @@ h1{
     border: none;
     padding: 0.6em 1em;
     border-radius: 1.5em;
+}
+
+.progress {
+    top:0;
+    position: absolute!important;
+    border-radius: 5px 5px 0px 0px;
+    z-index: 1000;
 }

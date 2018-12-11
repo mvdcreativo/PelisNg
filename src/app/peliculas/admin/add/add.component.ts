@@ -45,7 +45,7 @@ export class AddComponent implements OnInit {
     return this.movieService.updateIdTmdb$(id_tmdb, id).subscribe(
       data => {
         this.movies = data;
-        console.log(this.movies);
+        console.log(id_tmdb);
         this.getMovieTmdb(id_tmdb);
       },
       err => console.error('Ops: ' + err.message))
@@ -60,10 +60,11 @@ export class AddComponent implements OnInit {
   }
 
   getMovieTmdb(tmdb_id){
-    this.movieService.getDataMoviesTmdb(tmdb_id).subscribe(
+    // console.log(tmdb_id)
+    this.movieService.getDataMoviesTmdb(tmdb_id.tmdb_id).subscribe(
       (datos:MovieTmdb)=>{
         this.movieTmdb = datos;
-
+        console.log(this.movieTmdb)
         this.imagePatch = 'https://image.tmdb.org/t/p/w342/'+this.movieTmdb.poster_path;
 
         // this.movie.title = this.movieTmdb.title;
@@ -80,7 +81,7 @@ export class AddComponent implements OnInit {
         // this.movie.budget = this.movieTmdb.budget;
         // this.movie.revenue = this.movieTmdb.revenue;
         
-        // console.log(this.movieTmdb)
+        console.log(this.movieTmdb)
 
 
       })  

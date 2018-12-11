@@ -59,27 +59,6 @@
           <div class="titulo">
             <h1>{{ movie.title }}</h1>
           </div>
-          <div class="titulo">
-            <p><strong>Titulo Original: {{ movie.title_origin }}</strong></p>
-          </div>
-          <div class="sinopsis">
-            <p>{{ movie.description }}</p>
-          </div>
-          <div class="genero">
-            <span><strong>Genero: </strong></span> <span *ngFor="let genre of movie.genres"> {{ genre.name }} -</span>
-          </div>
-          <div class="ano">
-            <p><strong>Año:</strong> {{ movie.ano }}</p>
-          </div>
-          <div class="duracion">
-            <p><strong>Duración:</strong> {{ movie.duration }}</p>
-          </div>
-          <div class="director">
-            <p><strong>Director:</strong> {{ movie.director.name }}</p>
-          </div>
-          <div class="actores">
-            <p><strong>Elenco: </strong><span *ngFor="let actor of movie.actors"> {{ actor.name }} <strong>|</strong></span></p>
-          </div>
         </div>
       </div>
     </mat-card-content>

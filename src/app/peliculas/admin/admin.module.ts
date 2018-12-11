@@ -2,16 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AddComponent } from './add/add.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ListPeliculasComponent } from './list-peliculas/list-peliculas.component';
 
 
 const routes: Routes = [
   {
     path: 'admin/peliculas/add/:id',
     component: AddComponent
+  },
+  {
+    path: 'admin/peliculas',
+    component: ListPeliculasComponent
   },
 
 ];
@@ -21,11 +26,13 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
   ],
   declarations: [
-    AddComponent
+    AddComponent,
+    ListPeliculasComponent
   ]
 })
 export class AdminModule { }

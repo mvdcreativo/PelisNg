@@ -1,6 +1,6 @@
 <div class="card-item" *ngIf="movieTmdb">
   <!-- <div class="bg"></div> -->
-    <a   [routerLink]="[ '/admin/peliculas/add', id ]" [ngStyle]="{'background-image': 'url('+imagePatch+')' }">
+    <a   [routerLink]="[ '/detalle', id, movieTmdb.id]" [ngStyle]="{'background-image': 'url('+imagePatch+')' }">
       <div class="card-header">
         <div class="card-valoration">
           <span>

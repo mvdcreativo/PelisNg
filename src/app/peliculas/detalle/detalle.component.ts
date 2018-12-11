@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { PeliculasService } from '../peliculas.service';
 import { Pelicula, MovieTmdb, Crew, Cast } from '../pelicula';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SafeResourceUrl } from "@angular/platform-browser/src/security/dom_sanitization_service";
+import { formatNumber } from '@angular/common';
+
+
 
 @Component({
   selector: 'EM-detalle',
@@ -22,11 +26,22 @@ export class DetalleComponent implements OnInit {
   personal: Crew[];
   cast: Cast[];
   cast_image: string;
+  loading = false;
+  playPortada: boolean = true;
+
+  titles_rating: any= ['Malisima','Mala', 'Mala' ,'Mediocre' ,'Mediocre' , 'Aceptable','Buena', 'Buena','Muy Buena', 'Excelente'];
+  rate;
+  imageBg: string;
+  value_display_rating: string;
+  
+ 
+  
 
   constructor(
     private params : ActivatedRoute,
     private movieService : PeliculasService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    @Inject(LOCALE_ID) private locale: string
   ) { }
   
   ngOnInit() {
@@ -36,6 +51,15 @@ export class DetalleComponent implements OnInit {
     this.getMovieTmdb(this.id_tmdb)
   }
 
+  play(){
+    this.loading = true
+    this.playPortada = false
+      setTimeout(() => {
+          this.loading = false
+          
+      }, 2000);
+    
+  };
 
   getPelicula(id){
    
@@ -48,6 +72,7 @@ export class DetalleComponent implements OnInit {
       })
   }
 
+
   getMovieTmdb(tmdb_id){
     this.movieService.getDataMoviesTmdb(tmdb_id).subscribe(
       (datos:MovieTmdb)=>{
@@ -56,8 +81,18 @@ export class DetalleComponent implements OnInit {
         this.cast = this.movieTmdb.credits.cast;
         this.cast_image = 'https://image.tmdb.org/t/p/w92/';
         this.imagePatch = 'https://image.tmdb.org/t/p/w500/'+this.movieTmdb.poster_path;
-  
-        console.log(this.cast);
+        this.imageBg= 'https://image.tmdb.org/t/p/original/'+this.movieTmdb.backdrop_path;
+
+        this.rate = this.movieTmdb.vote_average;
+        // this.locale = '1.0-0';
+        this.titles_rating = ['Mala '+this.rate,
+                              'Mediocre '+this.rate,
+                              'Buena '+this.rate,
+                              'Muy Buena '+this.rate,
+                              'Excelente '+this.rate];
+        this.value_display_rating = formatNumber(this.rate / 2, this.locale, '1.0-0');
+        this.rate = formatNumber(this.rate, this.locale, '1.0-0');
+        console.log(this.rate+' '+this.movieTmdb.vote_average);
       });
   }
 }

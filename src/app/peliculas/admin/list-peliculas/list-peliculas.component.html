@@ -1,0 +1,78 @@
+<div class="container" *ngIf="peliculas">
+  <!-- <table class="table">
+      <tr>
+        <th width="5%" >ID</th>
+        <th width="25%">Imagen</th>
+        <th width="50%">Titulo</th>
+        <th width="15%">idTmDb</th>
+        <th width="5%">Acciones</th>
+      </tr>
+      <tr *ngFor="let pelicula of peliculas; let i=index" >
+        <td>{{ pelicula.id }}</td>
+        <td><img [src]="pelicula.image" width="50px" alt="{{ pelicula.title }}"></td>
+        <td style="text-align:left">{{ pelicula.title }}</td>
+        <td *ngIf=" pelicula.id === editRowID">
+            <form [formGroup]="f">
+              <div class="input-txt">
+                <input type="text" (blur)="updateTmdb(pelicula.id, i)" formControlName="tmdb_id" placeholder="ID TMDb" autofocus >
+              </div>
+            </form>
+        </td>
+        <td *ngIf="pelicula.id !== editRowID" (click)="editMovie(pelicula.id)">
+            {{ pelicula.tmdb_id }}
+        </td>
+        <td></td>
+      </tr>
+    </table> -->
+
+
+
+
+
+    <div class="input-txt filter">
+      <input type="text" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </div>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <!-- id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+    
+      <!-- title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Título </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+    
+      <!-- tmdb_id Column -->
+      <ng-container matColumnDef="tmdb_id">
+        <th mat-header-cell *matHeaderCellDef> ID Tmdb </th>
+        <td width = '10%' mat-cell *matCellDef="let element; let i = index;">
+          <div *ngIf="element.id === editRowID">
+              <form [formGroup]="f">
+                  <div class="input-txt">
+                    <input type="text" (blur)="updateTmdb(element.id, i)" formControlName="tmdb_id" placeholder="ID TMDb" autofocus [value]="element.tmdb_id">
+                  </div>
+              </form>
+          </div>
+          <div style="width: 100%; height: 20px ;" *ngIf="element.id !== editRowID" (click)="editMovie(element.id)">
+                  {{element.tmdb_id}}
+          </div>
+
+        </td>
+
+      </ng-container>
+    
+      <!-- image Column -->
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef> Imagen </th>
+        <td mat-cell *matCellDef="let element"><img [src]="element.image" width="50px" alt=" {{element.title}}"></td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>    
+</div>

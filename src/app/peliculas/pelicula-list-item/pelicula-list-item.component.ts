@@ -34,7 +34,6 @@ export class PeliculaListItemComponent implements OnInit {
   
         this.imagePatch = 'https://image.tmdb.org/t/p/w342/'+this.movieTmdb.poster_path;
   
-        console.log(this.movieTmdb);
       });
   }
 

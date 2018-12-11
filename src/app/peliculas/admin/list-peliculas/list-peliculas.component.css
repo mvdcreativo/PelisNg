@@ -1,0 +1,45 @@
+.container{
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+    display: block;
+    align-items: center;
+}
+/* 
+.table{
+    width: 100%;
+    display: grid;
+    align-items: center;
+
+}
+.table tr{
+    border-bottom: solid 1px black;
+}
+.table tr td{
+    justify-content: center;
+    text-align: center;
+}
+ */
+ table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  td .input-txt input{
+    width: 100%;
+    max-width: 100px;
+  }
+  .mat-column-state {
+    max-width: 64px;
+  }
+  .filter{
+      width: 100%;
+      padding: 1rem;
+      display: flex;
+      justify-content : center;
+  }
+  .filter input{
+      width: 50%;
+  }
