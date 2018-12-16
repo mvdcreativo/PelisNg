@@ -1,3 +1,5 @@
+import { SafeUrl } from '@angular/platform-browser';
+
 export interface Pelicula {
     data: Pelicula;
     id: number;
@@ -7,6 +9,7 @@ export interface Pelicula {
     state: number;
     extid: string;
     tmdb_id: number;
+    release_date: any;
     // title_origin?: string;
     // description: string;
     // ano: string;
@@ -21,7 +24,6 @@ export interface Pelicula {
     // rating_imdb: number;
     // vote_count_tmdb: number;
     // vote_count_imdb: number;
-    // release_date: string;
     // budget: number;
     // revenue: number;
 }
@@ -88,7 +90,7 @@ export interface MovieTmdb {
   original_title: string;
   overview: string;
   popularity: number;
-  poster_path: string;
+  poster_path: SafeUrl;
   production_companies: ProductionCompany[];
   production_countries: ProductionCountry[];
   release_date: string;

@@ -7,7 +7,7 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomeModule'
   },
   {
-    path: 'detalle/:id/:tmdb_id',
+    path: 'detalle/:tmdb_id',
     loadChildren: './peliculas/peliculas.module#PeliculasModule'
   },
   {

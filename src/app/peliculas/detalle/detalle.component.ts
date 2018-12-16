@@ -49,9 +49,7 @@ export class DetalleComponent implements OnInit {
   ) { }
   
   ngOnInit() {
-    this.id = this.params.snapshot.params['id'];
     this.id_tmdb = this.params.snapshot.params['tmdb_id'];
-    this.getPelicula(this.id);
     this.getMovieTmdb(this.id_tmdb)
   }
 

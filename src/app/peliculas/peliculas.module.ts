@@ -14,7 +14,7 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 const routes: Routes = [
   {
-    path: 'detalle/:id/:tmdb_id',
+    path: 'detalle/:tmdb_id',
     component: DetalleComponent
   },
 

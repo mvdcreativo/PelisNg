@@ -23,6 +23,9 @@ export class PeliculasService {
   getPeliculas(){
     return this.http.get<Pelicula>(environment.urlApi);
   }
+  getPeliculasAll(){
+    return this.http.get<Pelicula>(environment.urlApi+'?e=true');
+  }
 
   getPeliculaID(id){
     return this.http.get<Pelicula>(environment.urlApi+`/${id}`);
@@ -37,4 +40,10 @@ export class PeliculasService {
   getDataMoviesTmdb(id_tmdb){
     return this.http.get<MovieTmdb>('https://api.themoviedb.org/3/movie/'+`${id_tmdb}`+'?api_key='+`${this.apiKeyTmdb}`+'&language='+`${this.language}`+'&append_to_response=credits');
   }
+
+  //Generos 
+  getDataGenresTmdb(){
+    return this.http.get<MovieTmdb>('https://api.themoviedb.org/3/genre/movie/list?api_key='+`${this.apiKeyTmdb}`+'&language='+`${this.language}`);
+  }
+
 }

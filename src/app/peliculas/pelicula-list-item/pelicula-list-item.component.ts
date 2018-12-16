@@ -9,32 +9,16 @@ import { MovieTmdb } from '../pelicula';
 })
 export class PeliculaListItemComponent implements OnInit {
  
-  @Input() tmbd_id : number;
-  @Input() id : number;
+  @Input('tmbd') movieTmdb : MovieTmdb[];
 
-  movieTmdb: MovieTmdb;
   imagePatch: string;
   
   constructor(
-    private peliculas_service : PeliculasService
   ) { }
 
 
   ngOnInit() {
 
-    this.getMovieTmdb(this.tmbd_id);
-    // console.log(this.tmbd_id)
-
-  }
-
-  getMovieTmdb(tmdb_id){
-    this.peliculas_service.getDataMoviesTmdb(tmdb_id).subscribe(
-      (datos:MovieTmdb)=>{
-        this.movieTmdb = datos;
-  
-        this.imagePatch = 'https://image.tmdb.org/t/p/w342/'+this.movieTmdb.poster_path;
-  
-      });
   }
 
 }

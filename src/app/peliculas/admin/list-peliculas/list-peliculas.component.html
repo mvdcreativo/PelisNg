@@ -46,6 +46,12 @@
         <th mat-header-cell *matHeaderCellDef> Título </th>
         <td mat-cell *matCellDef="let element"> {{element.title}} </td>
       </ng-container>
+
+      <!-- release_date Column -->
+      <ng-container matColumnDef="release_date">
+        <th mat-header-cell *matHeaderCellDef> Lanzamiento </th>
+        <td mat-cell *matCellDef="let element"> {{element.release_date | date : 'dd-MM-yyyy'}} </td>
+      </ng-container>
     
       <!-- tmdb_id Column -->
       <ng-container matColumnDef="tmdb_id">
@@ -54,7 +60,9 @@
           <div *ngIf="element.id === editRowID">
               <form [formGroup]="f">
                   <div class="input-txt">
-                    <input type="text" (blur)="updateTmdb(element.id, i)" formControlName="tmdb_id" placeholder="ID TMDb" autofocus [value]="element.tmdb_id">
+                    <input type="hidden" formControlName="release_date" placeholder="release_date" >
+
+                    <input type="text" (blur)="procesoActualizar(element.id, i)" (keyup.enter)="procesoActualizar(element.id, i)" formControlName="tmdb_id" placeholder="ID TMDb" autofocus [value]="element.tmdb_id">
                   </div>
               </form>
           </div>
