@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 /////////////
 // FlexLayaut
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FiltroPipe } from './pipes/filtro.pipe';
+// import { FlexLayoutModule } from '@angular/flex-layout';
+// import { FiltroPipe } from './pipes/filtro.pipe';
 /////////////
 // barra de progreso circular
-import { NgCircleProgressModule } from 'ng-circle-progress';
+// import { NgCircleProgressModule } from 'ng-circle-progress';
 //////////////
 // Rating bar
 import { BarRatingModule } from "ngx-bar-rating";
@@ -20,20 +20,20 @@ import { BarRatingModule } from "ngx-bar-rating";
 // import {VgOverlayPlayModule} from 'videogular2/overlay-play';
 // import {VgBufferingModule} from 'videogular2/buffering';
 // Loading ngx
-import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
-import { SearchPipe } from './pipes/search.pipe';
+// import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+// import { SearchPipe } from './pipes/search.pipe';
 ////////////
 
 
 @NgModule({
   declarations: [
-    FiltroPipe,
-    SearchPipe,
+    // FiltroPipe,
+    // SearchPipe,
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    FlexLayoutModule,
+    // FlexLayoutModule,
     BarRatingModule,
     // VgCoreModule,
     // VgControlsModule,
@@ -55,9 +55,9 @@ import { SearchPipe } from './pipes/search.pipe';
   ],
   exports: [
     MaterialModule,
-    FlexLayoutModule,
-    FiltroPipe,
-    SearchPipe,
+    // FlexLayoutModule,
+    // FiltroPipe,
+    // SearchPipe,
     BarRatingModule,
     // VgCoreModule,
     // VgControlsModule,

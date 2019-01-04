@@ -98,6 +98,7 @@ export interface MovieTmdb {
   links: Links[];
   metas: Metas[];
   data: MovieTmdb;
+  slug:string;
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection?: any;

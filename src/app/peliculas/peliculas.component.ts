@@ -158,11 +158,11 @@ getMoviesByGenre(id){
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    if(this.routeGenre){
-      this.subsPeliculasG.unsubscribe();
-      this.subsPeliculas.unsubscribe();
-      this.routeGenre.unsubscribe()
-    }
+    // if(this.routeGenre){
+    //   this.subsPeliculasG.unsubscribe();
+    //   this.subsPeliculas.unsubscribe();
+    //   this.routeGenre.unsubscribe()
+    // }
   }
 
 }

@@ -9,7 +9,7 @@ import { MovieTmdb } from '../pelicula';
 })
 export class PeliculaListItemComponent implements OnInit {
  
-  @Input('tmbd') movieTmdb : MovieTmdb[];
+  @Input('tmbd') movieTmdb :any;
 
   imagePatch: string = 'https://image.tmdb.org/t/p/w342';;
   
