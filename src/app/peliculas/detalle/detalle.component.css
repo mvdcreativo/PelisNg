@@ -1,6 +1,7 @@
 
 .container{
     grid-template-columns: 1fr;
+    grid-gap: 0;
     
     
 }
@@ -15,8 +16,26 @@ a {
     grid-gap: 1rem;
     /* grid-template-columns: 1fr; */
     justify-items: center;
+    font-size: 1em;
+    background: white;
+}
+.info .atributo{
+    font-size: 1em;
+    font-weight: bold
 }
 .datos{
+    padding: 1rem;
+    /* margin-top: -20vh; */
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+                    " sinopsis sinopsis sinopsis"
+                    "genero genero lanzamiento"
+                    " director director duracion"
+                    "actores actores actores"
+}
+.datos span img{
     padding: 1rem;
 }
 .rating{
@@ -46,15 +65,13 @@ a {
 .titulo span{
     opacity:0.8 ;
 }
-.datos p{
-    text-align: justify;
-}
+
 .acciones{
     background-size: cover;
-    background-position: center;
-
+    background-position: center;    
     min-height: 80vh;
 }
+
 .acciones .bg{
     width: 100%;
     padding: 1rem;
@@ -144,41 +161,39 @@ h1{
 }
 .actores{
     display: grid;
+    grid-area: actores;
     width: 100%;
-    align-items: center;
-    justify-items: flex-start;
-    padding-top: 2rem;
+    border-radius: 10px;
+    padding: 0.5rem;
+    background: #ecf0f1;
+    align-content: center;
     grid-gap: 1rem;
+    padding: 1rem;
+    /* justify-content: space-between; */
+    
     
 }
-.actores-simg{
-    width: 100%;
-    display: grid;
-    grid-gap: 1rem;
-    align-items: center;
-    grid-template-columns: repeat(7, 1fr);
-    justify-items: center;
 
-}
 .actores-cimg{
     width: 100%;
+    max-width: 1024px;
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(7, 1fr);
-    align-items: center;
-    justify-items: center;
+}
 
+mat-panel-title{
+    font-size: 1.5em
 }
 
 .card-item {
+    width: 100%;
     border-radius: 5px;
-    max-width: 92px;
+    max-width: 138px;
     background: rgb(255, 255, 255);
     /* padding: 0.1rem; */
     height: 100%;
-    -webkit-box-shadow: 4px 3px 12px -4px rgba(0,0,0,0.75);
-    -moz-box-shadow: 4px 3px 12px -4px rgba(0,0,0,0.75);
-    box-shadow: 4px 3px 12px -4px rgba(0,0,0,0.75);
+
     background-position: center;
     background-size: cover;
     display: grid;
@@ -189,66 +204,97 @@ vg-player{
 .card-item .card-image{
     z-index: 0;
     margin-top: 0;
+    display: grid;
+    justify-content: center;
+    align-items: flex-start
     
 }
 .card-item .card-image img {
     width: 100%;
-    border-radius: 5px;
+    border-radius: 5% 5% 5% 5%;
+   
+
 }
 .card-title{
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    font-size: 0.7em;
     display: grid;
-    grid-template-rows:  1fr 1fr;   
+    text-align: left;
+    padding: 0.5rem;
+    color: black;
+    /* justify-content: center ; */
+    /* align-content: flex-start; */
+    /* align-items: center ; */
+    font-size: 0.8em;
+    /* grid-template-rows:  1fr 1fr;    */
 }
 
+.icon-cast{
+    font-size: 48px!important;
+    width: 48px!important;
+    height: 48px!important;
+    padding: 0!important;
+    text-align: left!important;
+    margin: 0!important;
+}
+
+
+.director, .ano, .sinopsis, .duracion, .genero{
+    width: 100%;
+    border-radius: 50px;
+    display: grid;
+    /* padding: 0.5rem; */
+    height: 2.5em;
+    background: rgb(236, 240, 241);
+    display: grid;
+    align-items: center;
+    align-content: center;
+    grid-template-columns: 0.9fr 2fr 10fr;
+    /* color: white */
+}
+.ano{
+    grid-area: lanzamiento
+}
+.director{
+    grid-area: director
+}
+.sinopsis{
+    grid-area: sinopsis;
+    text-align: justify;
+    /* padding: 30px; */
+    border-radius: 10px;
+    height: auto;
+}
+.sinopsis span:last-child{
+    padding: 1rem;
+}
+.duracion{
+    grid-area: duracion
+}
+.genero{
+    grid-area: genero
+}
+
+
 @media(min-width: 1400px){
-    .actores-simg{
-        grid-template-columns: repeat(8, 1fr)
-        
-    }
-    .actores-cimg{
-        grid-template-columns: repeat(8, 1fr);
-    }
+
 }
 
 @media(min-width: 1600px){
-    .actores-simg{
-        grid-template-columns: repeat(10, 1fr)
-        
-    }
-    .actores-cimg{
-        grid-template-columns: repeat(10, 1fr);
-    }
+
 }
 
 @media(max-width: 1100px){
-    .actores-simg{
-        grid-template-columns: repeat(6, 1fr)
-        
-    }
     .actores-cimg{
         grid-template-columns: repeat(6, 1fr);
     }
 }
 
 @media(max-width: 960px){
-    .actores-simg{
-        grid-template-columns: repeat(4, 1fr)
-        
-    }
     .actores-cimg{
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media(max-width: 768px){
-    .actores-simg{
-        grid-template-columns: repeat(3, 1fr)
-        
-    }
     .actores-cimg{
         grid-template-columns: repeat(3, 1fr);
     }
@@ -260,11 +306,9 @@ vg-player{
         padding: 0;
 
     }
-    .actores-simg{
-        grid-template-columns: repeat(3, 1fr)
-        
-    }
     .actores-cimg{
+        width: 100%;
+        max-width: 800px;
         grid-template-columns: repeat(3, 1fr);
     }
 
