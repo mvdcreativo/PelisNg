@@ -1,0 +1,8 @@
+{
+  "universal": {
+    "project": "pelisNg",
+    "skipInstall": false,
+    "directory": ".",
+    "http": true
+  }
+}
