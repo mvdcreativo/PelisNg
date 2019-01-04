@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Pelicula, MovieTmdb } from './pelicula';
+import { Pelicula, MovieTmdb, Genre } from './pelicula';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -23,16 +23,16 @@ export class PeliculasService {
   getPeliculas(){
     return this.http.get<Pelicula>(environment.urlApi);
   }
-  getPeliculasAll(){
-    return this.http.get<Pelicula>(environment.urlApi+'?e=true');
+  // getPeliculasAll(){
+  //   return this.http.get<Pelicula>(environment.urlApi+'?e=true');
+  // }
+
+  public getPeliculaID$(id: number) : Observable<MovieTmdb>{
+    return this.http.get<MovieTmdb>(environment.urlApi+`/${id}`);
   }
 
-  getPeliculaID(id){
-    return this.http.get<Pelicula>(environment.urlApi+`/${id}`);
-  }
 
-
-  updateIdTmdb$(movie:Pelicula, id): Observable<any>{
+  updateIdTmdb$(movie:MovieTmdb, id): Observable<any>{
     return this.http.put(environment.urlApi+`/${id}`, movie);
   }
 
@@ -42,8 +42,12 @@ export class PeliculasService {
   }
 
   //Generos 
-  getDataGenresTmdb(){
-    return this.http.get<MovieTmdb>('https://api.themoviedb.org/3/genre/movie/list?api_key='+`${this.apiKeyTmdb}`+'&language='+`${this.language}`);
+  getDataGenres$(): Observable<Genre>{
+    return this.http.get<Genre>(environment.urlGenre);
+  }
+
+  getMoviesByGenre$(id: number): Observable<Genre>{
+    return this.http.get<Genre>(environment.urlGenre+`/${id}`);
   }
 
 }

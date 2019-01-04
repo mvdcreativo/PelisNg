@@ -10,12 +10,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminModule } from './admin/admin.module';
 import { PeliculaListItemComponent } from './pelicula-list-item/pelicula-list-item.component';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { GeneroComponent } from './genero/genero.component';
 
 
 const routes: Routes = [
   {
-    path: 'detalle/:tmdb_id',
+    path: 'detalle/:slug/:tmdb_id',
     component: DetalleComponent
+  },
+  {
+    path: 'genero/:slug/:id',
+    component: PeliculasComponent
   },
 
 ];
@@ -40,7 +45,8 @@ const routes: Routes = [
   declarations: [
     PeliculasComponent,
     DetalleComponent,
-    PeliculaListItemComponent
+    PeliculaListItemComponent,
+    GeneroComponent
   ],
   exports: [
     PeliculasComponent,

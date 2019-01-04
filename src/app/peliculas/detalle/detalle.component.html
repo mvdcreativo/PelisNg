@@ -1,8 +1,8 @@
-<div class="container" *ngIf="movieTmdb && pelicula">
+<div class="container" *ngIf="pelicula">
   <div class="acciones" [ngStyle]="{'background-image': 'url('+imageBg+')'}">
     <div class="bg">
-      <div class="img">
-        <img [src]="imagePatch" alt="movieTmdb.title">
+      <div class="img" >
+        <img [src]="imagePatch" alt="pelicula.title">
       </div>
       <div class="ver-online">
         <div class="header">
@@ -12,11 +12,11 @@
                     [readOnly]="true">
                   </bar-rating>
                 </span>
-                <span class="count-votos">{{ movieTmdb.vote_count }} votos</span>
+                <span class="count-votos">{{ pelicula.vote_count }} votos</span>
             </div>
             <div class="titulo">
-                  <h1>{{ movieTmdb.title }}</h1>
-                  <span><strong>Titulo Original:</strong>  {{ movieTmdb.original_title }} ({{ movieTmdb.release_date | date : 'yyyy' }})</span>
+                  <h1>{{ pelicula.title }}</h1>
+                  <span><strong>Titulo Original:</strong>  {{ pelicula.original_title }} ({{ pelicula.release_date | date : 'yyyy' }})</span>
             </div>
         </div>
         <div class="video">
@@ -47,72 +47,141 @@
             </ng-template>
         </div>
 
-            
-            <!-- <vg-player>
-                <video [vgMedia]="media" #media id="singleVideo" preload="auto" [poster]="imageBg" controls>
-                    <source src="https://1fhjlpd.oloadcdn.net/dl/l/yUqEMvBVlKiNrMfW/LPFXrveo5I8/The.happytime.murders.2018.1080p-dual-lat-cinecalidad.to.mp4?mime=true" type="video/mp4">
-                </video>
-            </vg-player>   -->
-        
-
       </div>
-  
-      <!-- <div class="downloads">
-  
-      </div> -->
+
     </div>
   </div>
   <div class="info" >
     <div class="datos">
-      <div class="sinopsis">
-        <p>{{ movieTmdb.overview }}</p>
-      </div>
-      <div class="genero">
-        <span><strong>Genero: </strong></span> <span *ngFor="let genre of movieTmdb.genres"> {{ genre.name }} </span>
-      </div>
-      <div class="ano">
-        <p><strong>Año:</strong> {{ movieTmdb.release_date | date : 'yyyy' }}</p>
-      </div>
-      <div class="duracion">
-        <p><strong>Duración:</strong> {{ movieTmdb.runtime }}</p>
-      </div>
-      <div class="director">
-        <span><strong>Director/es:</strong></span> <span *ngFor="let director of  personal | filtro : 'job' : 'Director' ">
-          {{ director.name }}</span>
-      </div>
-      <div class="actores">
-        <span><strong>Elenco:</strong> </span>
-        <div class="actores-cimg">
-          <div class="card-item" *ngFor="let actor of cast | filtro : 'profile_path'">
-            <a href="#">
-              <div class="card-header">
-                <div class="card-image">
-                  <img [src]="cast_image + actor.profile_path" alt="{{ actor.name }}">
-                </div>
-
-                <div class="card-title">
-                  <span><strong>{{ actor.name }}</strong></span>
-                  <span>( {{ actor.character }})</span>
-                </div>
-              </div>
-            </a>
-
-          </div>
+      
+        <div class="sinopsis">
+          <span>
+            <img src="../../../assets/images/sinopsis.png" alt="">
+          </span>
+          <span class="atributo">
+            Sinopsis:
+          </span>
+          <span>
+            {{ pelicula.overview }}
+          </span>
         </div>
-        <div class="actores-simg">
-          <div class="card-item" *ngFor="let actor_simg of cast | filtro : 'profile_path': 'none'">
-            <a href="#">
-              <div class="card-header">
-                <div class="card-title">
-                  <span><strong>{{ actor_simg.name }}</strong></span>
-                  <span>( {{ actor_simg.character }})</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
+      
+      
+        <div class="genero">
+          <span>
+            <img src="../../../assets/images/genre.png" alt="">
+          </span>
+          <span class="atributo">
+            Genero:
+          </span>
+          <span>
+            <mat-chip-list>
+                <mat-chip *ngFor="let genre of pelicula.genres">
+                    {{ genre.name }}
+                </mat-chip>
+            </mat-chip-list>
 
-      </div>
+            <!-- <span *ngFor="let genre of pelicula.genres">
+              {{ genre.name }},
+            </span> -->
+          </span>
+        </div>
+      
+      
+        <div class="ano">
+          <span>
+            <img src="../../../assets/images/lanzamiento.png" alt="">
+          </span>
+          <span class="atributo">
+            Lanzamiento:
+          </span>
+          <span>
+              &nbsp;&nbsp;{{ pelicula.release_date | date : 'dd/MM/yyyy' }}
+          </span>
+        </div>
+      
+      
+        <div class="duracion">
+          <span>
+            <img src="../../../assets/images/duracion.png" alt="">
+          </span>
+          <span class="atributo">
+            Duración:
+          </span>
+          <span>
+              &nbsp;&nbsp;{{ pelicula.runtime }} min.
+          </span>
+        </div>
+      
+      
+        <div class="director">
+          <span>
+            <img src="../../../assets/images/director.png" alt="">
+          </span>
+          <span class="atributo">
+            Director/es:
+          </span>
+          <span>
+            <span *ngFor="let director of directors">
+                &nbsp;&nbsp;{{ director.name }}
+            </span>
+          </span>
+        </div>
+      
+      
+        <div class="actores">
+          <span  class="atributo">Elenco Principal: </span>
+          <div class="actores-cimg">
+            <div class="card-item" *ngFor="let actor of cast">
+              <a href="#">
+                <div class="card-header">
+                  <div class="card-image">
+                    <i *ngIf="!actor.profile_path" class="material-icons" style="font-size:100px">account_box</i>
+                    <img *ngIf="actor.profile_path" [src]="cast_image + actor.profile_path" alt="{{ actor.name }}">
+                  </div>
+    
+                  <div class="card-title">
+                    <span><strong>{{ actor.name }}</strong></span>
+                    <span>{{ actor.character }}</span>
+                  </div>
+                </div>
+              </a>
+    
+            </div>
+          </div>
+          <mat-accordion style=" width:100%">
+    
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Elenco Completo ...
+                </mat-panel-title>
+                <!-- <mat-panel-description>
+                          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                        </mat-panel-description> -->
+              </mat-expansion-panel-header>
+    
+              <mat-list>
+                <mat-list-item *ngFor="let cast of pelicula.credits.casts">
+                  <!-- <mat-icon  *ngIf="!cast.profile_path"  matListIcon>account_circle</mat-icon> -->
+                  <!-- <i *ngIf="!cast.profile_path" matListIcon class="material-icons icon-cast">account_circle</i> -->
+                  <img *ngIf="!cast.profile_path" matListAvatar src="https://img.icons8.com/ios/50/000000/user-male-circle-filled.png">
+                  <img *ngIf="cast.profile_path" matListAvatar [src]="cast_image + cast.profile_path" alt="{{cast.name}}">
+                  <h3 matLine> {{cast.name}} </h3>
+                  <p matLine>
+                    <span> {{cast.character}} </span>
+                    <!-- <span class="demo-2"> -- message.content </span> -->
+                  </p>
+                </mat-list-item>
+              </mat-list>
+    
+            </mat-expansion-panel>
+          </mat-accordion>
+    
+    
+    
+        </div>
+      
     </div>
-  </div>
+    </div>
 </div>

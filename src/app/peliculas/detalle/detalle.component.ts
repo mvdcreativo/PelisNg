@@ -1,11 +1,11 @@
 import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { formatNumber } from '@angular/common';
 
 import { PeliculasService } from '../peliculas.service';
 import { Pelicula, MovieTmdb, Crew, Cast } from '../pelicula';
-import { DomSanitizer } from '@angular/platform-browser';
-import { SafeResourceUrl } from "@angular/platform-browser/src/security/dom_sanitization_service";
-import { formatNumber } from '@angular/common';
+import { DirectiveNormalizer } from '@angular/compiler';
 
 
 
@@ -17,8 +17,8 @@ import { formatNumber } from '@angular/common';
 export class DetalleComponent implements OnInit {
 
   id:number;
-  pelicula: Pelicula;
-  urlOpenload ;
+  pelicula: MovieTmdb ;
+  urlOpenload: any ;
   Openload: SafeResourceUrl;
   id_tmdb: any;
   movieTmdb: MovieTmdb;
@@ -30,11 +30,13 @@ export class DetalleComponent implements OnInit {
   playPortada: boolean = true;
 
   titles_rating: any= ['Malisima','Mala', 'Mala' ,'Mediocre' ,'Mediocre' , 'Aceptable','Buena', 'Buena','Muy Buena', 'Excelente'];
-  rate;
+  rate:any;
   imageBg: string;
   value_display_rating: string;
+  directors: Crew;
   
- 
+  panelOpenState = false;
+
   
   // public id:number;
   // public pelicula: Pelicula;
@@ -45,12 +47,19 @@ export class DetalleComponent implements OnInit {
     private params : ActivatedRoute,
     private movieService : PeliculasService,
     private sanitizer: DomSanitizer,
-    @Inject(LOCALE_ID) private locale: string
-  ) { }
+    @Inject(LOCALE_ID) private locale: string //// rate
+  ) 
+  { 
+
+  }
+
   
   ngOnInit() {
     this.id_tmdb = this.params.snapshot.params['tmdb_id'];
-    this.getMovieTmdb(this.id_tmdb)
+    console.log(this.id_tmdb)
+    this.getPelicula(this.id_tmdb)
+    // console.log(this.pelicula)
+
   }
 
   play(){
@@ -65,36 +74,59 @@ export class DetalleComponent implements OnInit {
 
   getPelicula(id){
    
-    this.movieService.getPeliculaID(id).subscribe(
-      (datos:Pelicula)=>{
+    this.movieService.getPeliculaID$(id).subscribe(
+      datos=>{
         this.pelicula = datos.data;
-        this.urlOpenload = 'https://openload.co/embed/'+this.pelicula.extid;
-        this.Openload = this.sanitizer.bypassSecurityTrustResourceUrl( this.urlOpenload)
+         console.log(this.pelicula)
+
+          
+          this.urlOpenload = 'https://openload.co/embed/'+this.pelicula.extid;
+          this.Openload = this.sanitizer.bypassSecurityTrustResourceUrl( this.urlOpenload)
+          // console.log(this.pelicula)
+          this.directors = this.director(this.pelicula.credits.crew);
+          this.cast = this.elencoPrincipal(this.pelicula.credits.casts);
+          this.cast_image = 'https://image.tmdb.org/t/p/w154/';
+          this.imagePatch = 'https://image.tmdb.org/t/p/w500/'+this.pelicula.poster_path;
+          this.imageBg= 'https://image.tmdb.org/t/p/original/'+this.pelicula.backdrop_path;
+  
+          this.rate = this.pelicula.vote_average;
+          // this.locale = '1.0-0';
+          this.titles_rating = ['Mala '+this.rate,
+                                'Mediocre '+this.rate,
+                                'Buena '+this.rate,
+                                'Muy Buena '+this.rate,
+                                'Excelente '+this.rate];
+          this.value_display_rating = formatNumber(this.rate / 2, this.locale, '1.0-0');
+          this.rate = formatNumber(this.rate, this.locale, '1.0-0');
+          // console.log(this.rate+' '+this.pelicula.vote_average);
+        
 
       })
   }
+ /////Director
+  director(crew){
+    let director = crew.filter(
+      crew=>{
+        return crew.job === 'Director';
+      }
+    );
+    
+    return director;
 
-
-  getMovieTmdb(tmdb_id){
-    this.movieService.getDataMoviesTmdb(tmdb_id).subscribe(
-      (datos:MovieTmdb)=>{
-        this.movieTmdb = datos;
-        this.personal = this.movieTmdb.credits.crew;
-        this.cast = this.movieTmdb.credits.cast;
-        this.cast_image = 'https://image.tmdb.org/t/p/w92/';
-        this.imagePatch = 'https://image.tmdb.org/t/p/w500/'+this.movieTmdb.poster_path;
-        this.imageBg= 'https://image.tmdb.org/t/p/original/'+this.movieTmdb.backdrop_path;
-
-        this.rate = this.movieTmdb.vote_average;
-        // this.locale = '1.0-0';
-        this.titles_rating = ['Mala '+this.rate,
-                              'Mediocre '+this.rate,
-                              'Buena '+this.rate,
-                              'Muy Buena '+this.rate,
-                              'Excelente '+this.rate];
-        this.value_display_rating = formatNumber(this.rate / 2, this.locale, '1.0-0');
-        this.rate = formatNumber(this.rate, this.locale, '1.0-0');
-        console.log(this.rate+' '+this.movieTmdb.vote_average);
-      });
   }
+
+   /////Elenco
+   elencoPrincipal(cast){
+    let elenco = cast.filter(
+      cast=>{
+        if(cast.order <= 6){
+          return true;
+        }
+      }
+    );
+    
+    return elenco;
+
+  }
+
 }

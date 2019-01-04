@@ -1,4 +1,4 @@
-<a [routerLink]="[ '/detalle', id, movieTmdb.id]" [ngStyle]="{'background-image': 'url('+movieTmdb.poster_path+')' }">
+<a  *ngIf="movieTmdb" [routerLink]="[ '/detalle', movieTmdb.slug, movieTmdb.id]" [ngStyle]="{'background-image': 'url('+imagePatch+movieTmdb.poster_path+')' }">
   <div class="card-header">
     <div class="card-valoration">
       <span>
@@ -14,9 +14,9 @@
 
 <div class="card-action">
 <div>
-  <a href="" class="iz"><i class="material-icons">ondemand_video</i><span> Ver Online</span></a>
+  <a [routerLink]="[ '/detalle' , movieTmdb.slug, movieTmdb.id]"  class="iz"><i class="material-icons">ondemand_video</i><span> Ver Online</span></a>
 </div>
 <div>
-  <a [routerLink]="[ '/detalle', id, movieTmdb.id ]" class="de"><span>Mas Info</span><i class="material-icons">more_horiz</i></a>
+  <a [routerLink]="[ '/detalle' , movieTmdb.slug, movieTmdb.id]" class="de"><span>Mas Info</span><i class="material-icons">more_horiz</i></a>
 </div>
 </div>

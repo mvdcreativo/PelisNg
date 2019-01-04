@@ -42,12 +42,12 @@ export class ListPeliculasComponent implements OnInit {
 
   getPeliculas() {
 
-    this.peliculas_service.getPeliculasAll().subscribe(
-      (datos:any)=> {
-        this.peliculas = datos.data;
+    // this.peliculas_service.getPeliculasAll().subscribe(
+    //   (datos:any)=> {
+    //     this.peliculas = datos.data;
         
-        this.dataSource = new MatTableDataSource(this.peliculas)
-      });
+    //     this.dataSource = new MatTableDataSource(this.peliculas)
+    //   });
   }
 
   getDatosTmdb(tmdb_id , id, index){

@@ -11,7 +11,7 @@ export class PeliculaListItemComponent implements OnInit {
  
   @Input('tmbd') movieTmdb : MovieTmdb[];
 
-  imagePatch: string;
+  imagePatch: string = 'https://image.tmdb.org/t/p/w342';;
   
   constructor(
   ) { }

@@ -1,16 +1,16 @@
 <div class="search input-txt" >
     <input type="text" [(ngModel)]="searchText" placeholder="Buscar">
 </div>
-<div class="container" *ngIf="moviesTmdb">
-    <mat-progress-bar class="progress" *ngIf="loading === true" color="warn" mode="indeterminate"></mat-progress-bar>
-
-
-                <EM-pelicula-list-item  
-                    *ngFor="let movieTmdb of showResults()" 
-                    [tmbd]="movieTmdb"  
-                    class="card-item">
-                </EM-pelicula-list-item>
-                      
-
+<h1>{{ title }}</h1>
+<div class="container" *ngIf="peliculas; else elseTemplate">
+    <EM-pelicula-list-item  
+        *ngFor="let movieTmdb of showResults()" 
+        [tmbd]="movieTmdb"  
+        class="card-item">
+    </EM-pelicula-list-item>
     
 </div>
+
+<ng-template #elseTemplate>
+    <mat-progress-bar class="progress" *ngIf="loading === true" color="warn" mode="indeterminate"></mat-progress-bar>
+</ng-template>

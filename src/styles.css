@@ -31,6 +31,10 @@
     font-family: 'Roboto-Light';
     src: url('./assets/fonts/Roboto-Light.ttf'); 
 }
+@font-face{
+    font-family: 'Roboto-Bold';
+    src: url('./assets/fonts/Roboto-Bold.ttf'); 
+}
 
 body{
     padding: 0;
@@ -81,3 +85,20 @@ h1{
     border-radius: 5px 5px 0px 0px;
     z-index: 1000;
 }
+
+.mat-menu-panel{
+    width: 100%!important;
+    max-width: 100%!important;
+    /* overflow: hidden!important; */
+    min-width: 300px!important;
+    height: 35vh!important;
+    min-height: 260px;
+    display: grid;
+
+  
+  }
+  .mat-menu-panel .mat-menu-content{
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 1fr 1fr 1fr!important;
+  }

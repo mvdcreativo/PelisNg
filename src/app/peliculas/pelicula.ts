@@ -30,8 +30,11 @@ export interface Pelicula {
 
 /////Datos Peliculas de Tmdb
 export interface Genre {
+  data: Genre;
   id: number;
   name: string;
+  slug: string;
+  movies:MovieTmdb;
 }
 
 export interface ProductionCompany {
@@ -73,11 +76,28 @@ export interface Crew {
 }
 
 export interface Credits {
-  cast: Cast[];
+  casts: Cast[];
   crew: Crew[];
 }
-
+export interface Links {
+  first:string;
+  last: string;
+  prev: string;
+  next: string;
+}
+export interface Metas {
+  current_page: number;
+  from: number;
+  last_page: number;
+  path: string;
+  per_page:number;
+  to: number;
+  total: number;
+}
 export interface MovieTmdb {
+  links: Links[];
+  metas: Metas[];
+  data: MovieTmdb;
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection?: any;
@@ -85,6 +105,7 @@ export interface MovieTmdb {
   genres: Genre[];
   homepage: string;
   id: number;
+  tmdb_id: number;
   imdb_id: string;
   original_language: string;
   original_title: string;
@@ -104,4 +125,9 @@ export interface MovieTmdb {
   vote_average: number;
   vote_count: number;
   credits: Credits;
+
+  image: string;
+  url_origin: string;
+  state: number;
+  extid: string;
 }

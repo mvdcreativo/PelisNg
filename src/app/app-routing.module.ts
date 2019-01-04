@@ -7,7 +7,11 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomeModule'
   },
   {
-    path: 'detalle/:tmdb_id',
+    path: 'detalle/:slug/:tmdb_id',
+    loadChildren: './peliculas/peliculas.module#PeliculasModule'
+  },
+  {
+    path: 'genero/:slug/:id',
     loadChildren: './peliculas/peliculas.module#PeliculasModule'
   },
   {
@@ -17,7 +21,7 @@ const routes: Routes = [
   {
     path: 'admin/peliculas',
     loadChildren: './peliculas/admin/admin.module#AdminModule'
-  }
+  },
 ];
 
 @NgModule({

@@ -17,16 +17,25 @@
     <mat-toolbar>
 
       <span>Peliculas</span>
+      <div>
+        <ul class="generos">
+          <li *ngFor="let genreP of gPrincipales">
+            <a [routerLink]="['/genero', genreP.slug, genreP.id]"
+              routerLinkActive="router-link-active" mat-button>{{ genreP.name }}
+            </a>
+          </li>
+          <li>
+            <a mat-button [matMenuTriggerFor]="menu">Todos</a>
+          </li>
+        </ul>
+      </div>
+      <mat-menu #menu="matMenu">
+        <a *ngFor="let genre of genres" mat-menu-item  [routerLink]="['/genero', genre.slug, genre.id]"
+          routerLinkActive="router-link-active" >{{ genre.name }}</a>
+      </mat-menu>
+      
 
       
-      <ul>
-        <li>Acción</li>
-        <li>Aventura</li>
-        <li>Animació</li>
-        <li>Comedia</li>
-        <li>Drama</li>
-        <li>Terror</li>
-      </ul>
     </mat-toolbar>
     <!-- Add Content Here -->
   <!-- </mat-sidenav-content> -->

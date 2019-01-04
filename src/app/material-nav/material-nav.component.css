@@ -17,7 +17,7 @@
   grid-template-columns: 1fr 6fr
 }
 
-ul{
+.generos{
   width: 100%;
   max-width: 800px;
   list-style: none;
@@ -27,3 +27,13 @@ ul{
   justify-items: center;
   grid-template-columns: repeat( 6 , 1fr)
 }
+
+/* .mat-menu-panel{
+  width: 300px;
+  overflow: hidden!important;
+  min-width: 300px;
+  height: 25vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+} */

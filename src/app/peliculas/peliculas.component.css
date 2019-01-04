@@ -25,6 +25,7 @@
 
 .container{
     grid-area: main;
+    margin-top: 0;
     width: 100%;
     display: grid;
     justify-items: center;
@@ -64,7 +65,11 @@ cdk-virtual-scroll-viewport{
 h1 span{
     font-family: 'Roboto-Light', serif;
 }
-
+h1{
+    font-family: 'Roboto-Bold', serif;
+    font-size: 1.5em;
+    padding: 1rem
+}
 a{
     border-radius: 5px;
     background-position: center;
