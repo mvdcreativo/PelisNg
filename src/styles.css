@@ -5,13 +5,22 @@
 @import "~ngx-bar-rating/themes/br-movie-theme.css";
 .br-text{
     width: auto!important;
-    font-size: 0.8em!important
+    font-size: 0.8em!important;
+    color: white!important;
 }
 .br-units{
     margin: 0!important;
 }
 .br {
     margin: 0!important;
+}
+.br-unit{
+    
+    background-color: white!important;
+    opacity: 0.5!important;
+}
+.br-selected{
+    opacity: 1!important;
 }
 
 /*  */

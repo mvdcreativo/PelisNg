@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  urlApi: "http://pelis.web/api/movies",
-  urlGenre: "http://pelis.web/api/genres",
+  urlApi: "http://api.ver-online-latino.tk/api/movies",
+  urlGenre: "http://api.ver-online-latino.tk/api/genres",
 
 };
